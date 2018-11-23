@@ -3,7 +3,7 @@ using System;
 
 namespace call_app.Services
 {
-    public class Rest
+    class Rest
     {
         private const string BaseUrl = "https://nr59y0tklh.execute-api.eu-west-1.amazonaws.com/dev";
 
@@ -13,12 +13,10 @@ namespace call_app.Services
             {
                 BaseUrl = new Uri(BaseUrl)
             };
-            Console.WriteLine("### Request: " + request);
             var response = client.Execute<T>(request);
 
             if (response.IsSuccessful)
             {
-                Console.WriteLine("### Response: " + response.Data);
                 return response.Data;
             }
             else
