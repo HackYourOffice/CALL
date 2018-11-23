@@ -4,6 +4,7 @@ using Xamarin.Forms.Xaml;
 using call_app.Views;
 using call_app.Services;
 using call_app.Models;
+using call_app.Services.Users;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace call_app
@@ -31,7 +32,6 @@ namespace call_app
                 Application.Current.Properties.Add("userId", user.UserId);
             }
             Share.User = user;
-
         }
 
         protected override void OnSleep()

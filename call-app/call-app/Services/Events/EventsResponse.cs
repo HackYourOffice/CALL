@@ -1,10 +1,11 @@
-﻿using System;
+﻿using call_app.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace call_app.Models
+namespace call_app.Services.Events
 {
-    public class EventList
+    class EventsResponse
     {
         public string Message { get; set; }
         public List<Event> Events { get; set; }
