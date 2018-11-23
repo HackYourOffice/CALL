@@ -22,7 +22,23 @@ namespace call_app.Services
 
         public List<Event> Get()
         {
-            return null;
+            var request = new RestRequest
+            {
+                Resource = "list-events",
+                Method = Method.POST,
+            };
+            return Rest.Send<EventList>(request).Events;
+        }
+
+        public List<Event> GetOwn()
+        {
+            var request = new RestRequest
+            {
+                Resource = "list-events",
+                Method = Method.POST,
+            };
+            request.AddJsonBody(Share.User);
+            return Rest.Send<EventList>(request).Events;
         }
 
     }
