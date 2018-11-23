@@ -1,4 +1,5 @@
 ﻿using call_app.Models;
+using call_app.Services.Events;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace call_app.Services
                 Method = Method.POST,
             };
             request.AddJsonBody(createEvent);
-            return Rest.Send<CreatedEvent>(request).Event;
+            return Rest.Send<EventResponse>(request).Event;
         }
 
         public List<Event> Get()
@@ -27,7 +28,7 @@ namespace call_app.Services
                 Resource = "list-events",
                 Method = Method.POST,
             };
-            return Rest.Send<EventList>(request).Events;
+            return Rest.Send<EventsResponse>(request).Events;
         }
 
         public List<Event> GetOwn()
@@ -38,7 +39,7 @@ namespace call_app.Services
                 Method = Method.POST,
             };
             request.AddJsonBody(Share.User);
-            return Rest.Send<EventList>(request).Events;
+            return Rest.Send<EventsResponse>(request).Events;
         }
 
         public bool RegisterAt(Event eventToRegisterAt)
@@ -71,32 +72,7 @@ namespace call_app.Services
                 Method = Method.POST,
             };
             request.AddJsonBody(Share.User);
-            return Rest.Send<EventList>(request).Events;
-        }
-    }//EventService
-
-    class Subscription
-    {
-        public string UserId { get; set; }
-        public string EventId { get; set; }
-
-        public Subscription(string userId, string eventId)
-        {
-            UserId = userId;
-            EventId = eventId;
+            return Rest.Send<EventsResponse>(request).Events;
         }
     }
-
-    class EventAction
-    {
-        public string EventId { get; set; }
-        public int ActionCode { get; set; }
-
-        public EventAction(string eventId, ActionCode actionCode)
-        {
-            EventId = eventId;
-            ActionCode = (int) actionCode;
-        }
-    }
-
 }
