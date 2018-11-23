@@ -1,11 +1,14 @@
-﻿using System;
-
-namespace call_app.Models
+﻿namespace call_app.Models
 {
-    class User
+    public class User
     {
         public string Userid { get; set; }
 
         public User() { }
+
+        public override string ToString()
+        {
+            return string.Format("User(userid={0})", Userid);
+        }
     }
 }
