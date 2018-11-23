@@ -52,19 +52,28 @@ namespace call_app.Services
             return Rest.Send(request);
         }
 
-        public bool NotifySubscriberOf(Event subscribedEvent)
+        public bool NotifySubscriberOf(Event subscribedEvent, ActionCode actionCode = ActionCode.NOTIFICATION)
         {
             var request = new RestRequest
             {
                 Resource = "notify",
                 Method = Method.POST,
             };
-            request.AddJsonBody(new EventIdentifier(subscribedEvent.EventId));
+            request.AddJsonBody(new EventAction(subscribedEvent.EventId, actionCode));
             return Rest.Send(request);
         }
 
-
-    }
+        public List<Event> Poll()
+        {
+            var request = new RestRequest
+            {
+                Resource = "poll",
+                Method = Method.POST,
+            };
+            request.AddJsonBody(Share.User);
+            return Rest.Send<EventList>(request).Events;
+        }
+    }//EventService
 
     class Subscription
     {
@@ -78,13 +87,15 @@ namespace call_app.Services
         }
     }
 
-    class EventIdentifier
+    class EventAction
     {
         public string EventId { get; set; }
+        public int ActionCode { get; set; }
 
-        public EventIdentifier(string eventId)
+        public EventAction(string eventId, ActionCode actionCode)
         {
             EventId = eventId;
+            ActionCode = (int) actionCode;
         }
     }
 
