@@ -23,17 +23,14 @@ namespace call_app
             if (Application.Current.Properties.ContainsKey("userId"))
             {
                 user.UserId = Application.Current.Properties["userId"] as string;
-                Console.WriteLine("### Existing User: " + user);
             }
             else
             {
                 var userService = new UserService();
                 user = userService.Create();
                 Application.Current.Properties.Add("userId", user.UserId);
-                Console.WriteLine("### New User: " + user);
             }
             Share.User = user;
-            Console.WriteLine("### User: " + user);
 
         }
 
