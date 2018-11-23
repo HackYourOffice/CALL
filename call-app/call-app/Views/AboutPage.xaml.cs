@@ -24,6 +24,7 @@ namespace call_app.Views
 		{
 			var options = new MobileBarcodeScanningOptions();
 			options.PossibleFormats.Add(BarcodeFormat.QR_CODE);
+			options.PossibleFormats.Add(BarcodeFormat.EAN_13);
 			var scan = new ZXingScannerPage(options);
 			await Navigation.PushAsync(scan);
 
