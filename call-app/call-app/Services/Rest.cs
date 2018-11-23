@@ -26,5 +26,15 @@ namespace call_app.Services
             }
         }
 
+        public static bool Send(RestRequest request)
+        {
+            var client = new RestClient
+            {
+                BaseUrl = new Uri(BaseUrl)
+            };
+            var response = client.Execute(request);
+            return (response.IsSuccessful);
+        }
+
     }
 }

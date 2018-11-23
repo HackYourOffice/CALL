@@ -41,5 +41,30 @@ namespace call_app.Services
             return Rest.Send<EventList>(request).Events;
         }
 
+        public bool RegisterAt(Event eventToRegisterAt)
+        {
+            var request = new RestRequest
+            {
+                Resource = "subscribe",
+                Method = Method.POST,
+            };
+            request.AddJsonBody(new Subscription(Share.User.UserId, eventToRegisterAt.EventId));
+            return Rest.Send(request);
+        }
+
+
     }
+
+    class Subscription
+    {
+        public string UserId { get; set; }
+        public string EventId { get; set; }
+
+        public Subscription(string userId, string eventId)
+        {
+            UserId = userId;
+            EventId = eventId;
+        }
+    }
+
 }
