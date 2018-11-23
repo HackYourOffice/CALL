@@ -49,7 +49,7 @@ namespace call_app.ViewModels
 
         async Task ExecuteLoadEventsCommand()
         {
-            //Service.Create(new CreateEvent("Hallo", "duda"));
+            Service.Create(new CreateEvent("Hallo", "duda"));
             List<Event> events = Service.GetOwn();
 			IsListEmpty = events.Count == 0;
 			IsListVisible = !isListEmpty;

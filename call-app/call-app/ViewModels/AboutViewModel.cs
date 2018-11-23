@@ -9,7 +9,7 @@ namespace call_app.ViewModels
     {
         public AboutViewModel()
         {
-            Title = "About";
+            Title = "Scan QR";
 
             OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://xamarin.com/platform")));
         }
