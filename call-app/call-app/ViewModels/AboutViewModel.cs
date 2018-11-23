@@ -7,13 +7,16 @@ namespace call_app.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {
+		private String text = "dein Text";
+		public String Text{
+			get { return text; }
+            set { SetProperty(ref text, value); }
+		}
+
         public AboutViewModel()
         {
             Title = "Scan QR";
-
-            OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://xamarin.com/platform")));
         }
-
-        public ICommand OpenWebCommand { get; }
+       
     }
 }
