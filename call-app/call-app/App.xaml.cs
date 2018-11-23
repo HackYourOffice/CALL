@@ -2,13 +2,14 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using call_app.Views;
+using call_app.Services;
+using call_app.Models;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace call_app
 {
     public partial class App : Application
     {
-
         public App()
         {
             InitializeComponent();
@@ -18,6 +19,22 @@ namespace call_app
         protected override void OnStart()
         {
             // Handle when your app starts
+            var user = new User();
+            if (Application.Current.Properties.ContainsKey("userId"))
+            {
+                user.Userid = Application.Current.Properties["userId"] as string;
+                Console.WriteLine("### Existing User: " + user);
+            }
+            else
+            {
+                var userService = new UserService();
+                user = userService.Create();
+                Application.Current.Properties.Add("userId", user.Userid);
+                Console.WriteLine("### New User: " + user);
+            }
+            Share.User = user;
+            Console.WriteLine("### User: " + user);
+
         }
 
         protected override void OnSleep()
