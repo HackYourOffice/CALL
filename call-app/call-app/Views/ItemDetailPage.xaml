@@ -4,9 +4,12 @@
              x:Class="call_app.Views.ItemDetailPage"
              Title="{Binding Title}">
     <StackLayout Spacing="20" Padding="15">
-        <Label Text="Text:" FontSize="Medium" />
-        <Label Text="{Binding Item.Text}" FontSize="Small"/>
-        <Label Text="Description:" FontSize="Medium" />
-        <Label Text="{Binding Item.Description}" FontSize="Small"/>
+        <Button Text="CALL"
+                WidthRequest="300"
+                HeightRequest="300"
+                BorderRadius="150"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                FontSize="Large"/>
     </StackLayout>
 </ContentPage>
