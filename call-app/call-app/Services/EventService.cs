@@ -52,6 +52,17 @@ namespace call_app.Services
             return Rest.Send(request);
         }
 
+        public bool NotifySubscriberOf(Event subscribedEvent)
+        {
+            var request = new RestRequest
+            {
+                Resource = "notify",
+                Method = Method.POST,
+            };
+            request.AddJsonBody(new EventIdentifier(subscribedEvent.EventId));
+            return Rest.Send(request);
+        }
+
 
     }
 
@@ -63,6 +74,16 @@ namespace call_app.Services
         public Subscription(string userId, string eventId)
         {
             UserId = userId;
+            EventId = eventId;
+        }
+    }
+
+    class EventIdentifier
+    {
+        public string EventId { get; set; }
+
+        public EventIdentifier(string eventId)
+        {
             EventId = eventId;
         }
     }
