@@ -27,11 +27,11 @@ namespace call_app.Views
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as Item;
-            if (item == null)
+            var myEvent = args.SelectedItem as Event;
+			if (myEvent == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            //await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(myEvent)));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
@@ -46,7 +46,7 @@ namespace call_app.Views
         {
             base.OnAppearing();
 
-            if (viewModel.Items.Count == 0)
+			if (viewModel.Events.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
         }
     }
