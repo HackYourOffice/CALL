@@ -12,8 +12,6 @@ namespace call_app
         public App()
         {
             InitializeComponent();
-
-
             MainPage = new MainPage();
         }
 
