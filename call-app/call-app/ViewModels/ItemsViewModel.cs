@@ -12,15 +12,30 @@ using System.Collections.Generic;
 
 namespace call_app.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
-    {
-        public ObservableCollection<Event> Events { get; set; }
-        public Command LoadItemsCommand { get; set; }
-        private EventService Service { get; set; }
+	public class ItemsViewModel : BaseViewModel
+	{
+		public ObservableCollection<Event> Events { get; set; }
+		public Command LoadItemsCommand { get; set; }
+		public String NoListAvailable { get; set; }
+		private Boolean isListEmpty = true;
+		public Boolean IsListEmpty 
+		{ 
+			get { return isListEmpty; }  
+			set{SetProperty(ref isListEmpty, value);}
+		}
+		private Boolean isListVisible = false;
+		public Boolean IsListVisible 
+		{ 
+			get { return isListVisible; }  
+			set{SetProperty(ref isListVisible, value);}
+		}
+
+		private EventService Service { get; set; }
         
         public ItemsViewModel()
         {
             Title = "Meine Events";
+			NoListAvailable = "Du hast noch keine Events";
             Events = new ObservableCollection<Event>();
             Service = new EventService();
 			LoadItemsCommand = new Command(async () => await ExecuteLoadEventsCommand());
@@ -34,36 +49,14 @@ namespace call_app.ViewModels
 
         async Task ExecuteLoadEventsCommand()
         {
+            //Service.Create(new CreateEvent("Hallo", "duda"));
             List<Event> events = Service.GetOwn();
+			IsListEmpty = events.Count == 0;
+			IsListVisible = !isListEmpty;
             foreach (var myEvent in events)
             {
 				Events.Add(myEvent);
             }
         }
-        //async Task ExecuteLoadItemsCommand()
-        //{
-        //    if (IsBusy)
-        //        return;
-
-        //    IsBusy = true;
-
-        //    try
-        //    {
-        //        Items.Clear();
-        //        var items = await DataStore.GetItemsAsync(true);
-        //        foreach (var item in items)
-        //        {
-        //            Items.Add(item);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine(ex);
-        //    }
-        //    finally
-        //    {
-        //        IsBusy = false;
-        //    }
-        //}
     }
 }

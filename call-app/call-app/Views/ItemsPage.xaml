@@ -14,9 +14,17 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
+        <AbsoluteLayout>
+            <Label Text="{Binding NoListAvailable}"
+                   AbsoluteLayout.LayoutFlags="All"
+                   AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.5, 0.5"
+                   HorizontalOptions="Center"
+                   IsVisible="{Binding IsListEmpty}"
+                   VerticalOptions="FillAndExpand"
+                   YAlign="Center"/>
             <ListView x:Name="ItemsListView" 
                 ItemsSource="{Binding Events}"
+                IsVisible="{Binding IsListVisible}"
                 VerticalOptions="FillAndExpand"
                  HasUnevenRows="true"
                  RefreshCommand="{Binding LoadItemsCommand}"
@@ -41,6 +49,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackLayout>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
