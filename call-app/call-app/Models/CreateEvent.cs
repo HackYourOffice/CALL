@@ -10,9 +10,10 @@ namespace call_app.Models
         public string Title { get; set; }
         public string Description { get; set; }
 
-        public CreateEvent(string userId, string title, string description = null)
+        public CreateEvent() { }
+
+        public CreateEvent(string title, string description)
         {
-            UserId = userId;
             Title = title;
             Description = description;
         }
@@ -20,7 +21,7 @@ namespace call_app.Models
         public override string ToString()
         {
             return string.Format(
-                "User(userid={0}, title={1}, description={2})", 
+                "CreateEvent(userid={0}, title={1}, description={2})", 
                 UserId, Title, Description);
         }
     }

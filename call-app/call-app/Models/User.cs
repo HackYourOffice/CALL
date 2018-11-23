@@ -1,4 +1,8 @@
-﻿namespace call_app.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace call_app.Models
 {
     public class User
     {
