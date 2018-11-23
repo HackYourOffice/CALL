@@ -12,6 +12,7 @@ namespace call_app.Services
                 Resource = "create-user",
                 Method = Method.POST
             };
+            request.RequestFormat = DataFormat.Json;
             return Rest.Send<User>(request);
         }
     }

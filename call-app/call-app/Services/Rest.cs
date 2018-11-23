@@ -14,14 +14,13 @@ namespace call_app.Services
                 BaseUrl = new Uri(BaseUrl)
             };
             var response = client.Execute<T>(request);
-
             if (response.IsSuccessful)
             {
                 return response.Data;
             }
             else
             {
-                Console.WriteLine("### HTTP Error!");
+                Console.WriteLine("### HTTP Error: " + response.Content);
                 return new T();
             }
         }
