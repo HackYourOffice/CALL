@@ -8,7 +8,7 @@ namespace call_app.Services
 {
     public class EventService
     {
-        public CreateEvent Create(CreateEvent createEvent)
+        public Event Create(CreateEvent createEvent)
         {
             createEvent.UserId = Share.User.UserId;
             var request = new RestRequest
@@ -17,7 +17,12 @@ namespace call_app.Services
                 Method = Method.POST,
             };
             request.AddJsonBody(createEvent);
-            return Rest.Send<CreateEvent>(request);
+            return Rest.Send<CreatedEvent>(request).Event;
+        }
+
+        public List<Event> Get()
+        {
+            return null;
         }
 
     }

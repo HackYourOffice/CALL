@@ -16,7 +16,7 @@ namespace call_app.Models
         public override string ToString()
         {
             return string.Format(
-                "User(userid={0}, eventid={1}, title={2}, description={3})", 
+                "Event(userid={0}, eventid={1}, title={2}, description={3})", 
                 UserId, EventId, Title, Description);
         }
     }

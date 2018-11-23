@@ -16,6 +16,7 @@ namespace call_app.Services
             var response = client.Execute<T>(request);
             if (response.IsSuccessful)
             {
+                Console.WriteLine("### Response Content: " + response.Content);
                 return response.Data;
             }
             else
