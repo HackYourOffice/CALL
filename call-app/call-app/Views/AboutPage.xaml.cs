@@ -17,26 +17,28 @@ namespace call_app.Views
         {
             InitializeComponent();
 
-			BindingContext = aboutViewModel = new AboutViewModel();
-        }
-
-		private async void Handle_Clicked(object sender, System.EventArgs e)
-		{
 			var options = new MobileBarcodeScanningOptions();
-			options.PossibleFormats.Add(BarcodeFormat.QR_CODE);
-			options.PossibleFormats.Add(BarcodeFormat.EAN_13);
-			var scan = new ZXingScannerPage(options);
-			await Navigation.PushAsync(scan);
+            options.PossibleFormats.Add(BarcodeFormat.QR_CODE);
+            options.PossibleFormats.Add(BarcodeFormat.EAN_13);
 
-			scan.OnScanResult+=(result) => 
+            var scanView = new ZXingScannerView();
+			scanView.HorizontalOptions = LayoutOptions.FillAndExpand;
+			scanView.VerticalOptions = LayoutOptions.FillAndExpand;
+            
+            scanView.Options = options;
+			scanView.IsScanning = true;
+			scanView.OnScanResult += (result) =>
 			{
-				Device.BeginInvokeOnMainThread(async () =>
+				Device.BeginInvokeOnMainThread(() =>
 				{
-					await Navigation.PopAsync();
 					aboutViewModel.Text = result.Text;
+					scanView.IsScanning = false;
 				});
 			};
-           
-		}
+
+            ScanPageContent.Children.Add(scanView);
+
+			BindingContext = aboutViewModel = new AboutViewModel();
+        }
     }
 }
