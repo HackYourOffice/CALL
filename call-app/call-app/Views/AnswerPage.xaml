@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="call_app.Views.AnswerPage">
+   
+
+<ContentPage.Content>
+    <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Button Text="OK" WidthRequest="100" HeightRequest="100" BackgroundColor="DarkGreen"/>
+            <Button Text="in 5 Min" WidthRequest="100" HeightRequest="100" Clicked="On5MinClicked"/>
+            <Button Text="in 10 Min" WidthRequest="100" HeightRequest="100" Clicked="On10MinClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
