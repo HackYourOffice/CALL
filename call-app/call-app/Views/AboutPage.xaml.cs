@@ -1,4 +1,6 @@
 ﻿using System;
+using call_app.Models;
+using call_app.Services;
 using call_app.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -8,37 +10,56 @@ using ZXing.Net.Mobile.Forms;
 
 namespace call_app.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AboutPage : ContentPage
-    {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class AboutPage : ContentPage
+	{
 		AboutViewModel aboutViewModel;
+		ZXingScannerView scannerView;
 
-        public AboutPage()
-        {
-            InitializeComponent();
+		private EventService eventService;
 
+		public AboutPage()
+		{
+			InitializeComponent();
+			eventService = new EventService();
+
+			InitSchmarn();
+
+			ScanPageContent.Children.Add(scannerView);
+            
+			BindingContext = aboutViewModel = new AboutViewModel();
+		}
+        
+		private async void OpenEventDetail(Result result) 
+		{
+			Event scannedEvent = eventService.GetById(result.Text);
+			aboutViewModel.Text = result.Text;
+			var vm = new ItemDetailViewModel(scannedEvent);
+			await Navigation.PushAsync(new ItemDetailPage(vm));
+		}
+
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+			InitSchmarn();
+		}
+
+		private void InitSchmarn() 
+		{
 			var options = new MobileBarcodeScanningOptions();
             options.PossibleFormats.Add(BarcodeFormat.QR_CODE);
             options.PossibleFormats.Add(BarcodeFormat.EAN_13);
 
-            var scanView = new ZXingScannerView();
-			scanView.HorizontalOptions = LayoutOptions.FillAndExpand;
-			scanView.VerticalOptions = LayoutOptions.FillAndExpand;
-            
-            scanView.Options = options;
-			scanView.IsScanning = true;
-			scanView.OnScanResult += (result) =>
-			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					aboutViewModel.Text = result.Text;
-					scanView.IsScanning = false;
-				});
-			};
-
-            ScanPageContent.Children.Add(scanView);
-
-			BindingContext = aboutViewModel = new AboutViewModel();
-        }
-    }
+            scannerView = new ZXingScannerView();
+            scannerView.HorizontalOptions = LayoutOptions.FillAndExpand;
+            scannerView.VerticalOptions = LayoutOptions.FillAndExpand;
+            scannerView.Options = options;
+            scannerView.IsScanning = true;
+            scannerView.OnScanResult += (result) =>
+            {
+                Device.BeginInvokeOnMainThread(() => OpenEventDetail(result));
+                scannerView.IsScanning = false;
+            };
+		}
+	}
 }
