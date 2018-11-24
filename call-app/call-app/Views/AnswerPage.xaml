@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="call_app.Views.AnswerPage">
+   
+
+<ContentPage.Content>
+    <StackLayout>
+            <Label Text="{Binding currentEvent.Title}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Button Text="OK"   HorizontalOptions="FillAndExpand" VerticalOptions="End" TextColor="White" BackgroundColor="#2196F3"/>
+            <Button Text="in 5 Min"  HorizontalOptions="FillAndExpand" VerticalOptions="End" TextColor="#2196F3" BackgroundColor="White" Clicked="On5MinClicked"/>
+            <Button Text="in 10 Min"  HorizontalOptions="FillAndExpand" VerticalOptions="End" TextColor="#2196F3" BackgroundColor="White" Clicked="On10MinClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -41,6 +41,10 @@ namespace call_app.Views
         {
             await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
         }
+        async void Answer_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new AnswerPage()));
+        }
 
         protected override void OnAppearing()
         {

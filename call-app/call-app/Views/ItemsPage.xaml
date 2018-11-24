@@ -12,8 +12,10 @@
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
-    </ContentPage.ToolbarItems>
-    <ContentPage.Content>
+            <ToolbarItem Text="Answer" Clicked="Answer_Clicked">
+            </ToolbarItem>
+   </ContentPage.ToolbarItems>
+      <ContentPage.Content>
         <AbsoluteLayout>
             <Label Text="{Binding NoListAvailable}"
                    AbsoluteLayout.LayoutFlags="All"
