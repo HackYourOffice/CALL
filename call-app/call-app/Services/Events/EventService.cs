@@ -74,5 +74,16 @@ namespace call_app.Services
             request.AddJsonBody(Share.User);
             return Rest.Send<EventsResponse>(request).Events;
         }
+
+        public Event GetById(string eventId)
+        {
+            return new Event
+            {
+                UserId = "userid-xxx",
+                EventId = "eventid-xxx",
+                Title = "Let's Party",
+                Description = "Party Hard"
+            };
+        }
     }
 }
