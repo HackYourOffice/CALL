@@ -26,7 +26,7 @@ namespace call_app.Views
 			if (eventService.NotifySubscriberOf(CallEvent)) {
 				Device.BeginInvokeOnMainThread(async () =>
 				{
-					await Navigation.PopAsync();
+					await Navigation.PushAsync(new StatisticsPage());
 				});
 			}
 		}

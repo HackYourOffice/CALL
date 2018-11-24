@@ -17,4 +17,12 @@
   <ItemGroup>
     <Folder Include="Views\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\MyPage.xaml.cs">
+      <DependentUpon>StatisticsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StatisticsPage.xaml.cs">
+      <DependentUpon>StatisticsPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>
