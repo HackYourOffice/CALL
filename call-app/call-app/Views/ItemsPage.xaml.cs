@@ -31,7 +31,7 @@ namespace call_app.Views
 			if (myEvent == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(myEvent)));
+			await Navigation.PushAsync(new CallPage(myEvent));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
