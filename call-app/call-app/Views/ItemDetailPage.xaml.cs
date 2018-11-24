@@ -24,13 +24,13 @@ namespace call_app.Views
         {
             InitializeComponent();
 
-            var item = new Item
+            var myEvent = new Event
             {
-                Text = "Item 1",
-                Description = "This is an item description."
+				Title = "Event",
+                Description = "This is an event description."
             };
 
-            viewModel = new ItemDetailViewModel(item);
+			viewModel = new ItemDetailViewModel(myEvent);
             BindingContext = viewModel;
         }
     }

@@ -6,11 +6,11 @@ namespace call_app.ViewModels
 {
     public class ItemDetailViewModel : BaseViewModel
     {
-        public Item Item { get; set; }
-        public ItemDetailViewModel(Item item = null)
+		public Event Event { get; set; }
+		public ItemDetailViewModel(Event myEvent = null)
         {
-            Title = item?.Text;
-            Item = item;
+			Title = myEvent?.Title;
+			Event = myEvent;
         }
     }
 }
