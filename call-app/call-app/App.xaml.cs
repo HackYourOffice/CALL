@@ -7,6 +7,7 @@ using call_app.Models;
 using call_app.Services.Users;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Plugin.FirebasePushNotification;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace call_app
@@ -17,6 +18,29 @@ namespace call_app
         {
             InitializeComponent();
             MainPage = new MainPage();
+
+			CrossFirebasePushNotification.Current.OnTokenRefresh += (s, p) =>
+            {
+				System.Console.WriteLine($"TOKEN : {p.Token}");
+            };
+
+			CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
+            {
+
+				System.Console.WriteLine("Received");
+
+            };
+
+			CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
+            {
+                System.Diagnostics.Debug.WriteLine("Opened");
+                foreach (var data in p.Data)
+                {
+					System.Console.WriteLine($"{data.Key} : {data.Value}");
+                }
+
+
+            };
         }
 
 		protected override void OnStart()
@@ -37,7 +61,7 @@ namespace call_app
 
             StartPolling();
 		}
-
+        
 		private void StartPolling() 
 		{
 			EventService eventService = new EventService();
@@ -47,15 +71,25 @@ namespace call_app
 			while (true)
 			{
 				List<Event> events = eventService.Poll();
-					if (events != null && events.Count != 0)
-					{
-						Console.WriteLine("#####" + events[0].Title);
-					} 
-					else 
-					{
-						Console.WriteLine("##### Ohh, no events registered");
-					}
-					await System.Threading.Tasks.Task.Delay(3000);
+				if (events != null && events.Count != 0)
+				{
+						Event myEvent = events[0];
+						if (Share.calledEvent != null && Share.calledEvent.EventId.Equals(myEvent.EventId)) {
+							Console.WriteLine("##### Don't print anything");
+						} else {
+							Device.BeginInvokeOnMainThread(async () =>
+                            {
+                                await MainPage.DisplayAlert(myEvent.Title, myEvent.Description, "OK");
+                            });
+							Console.WriteLine("#####" + events[0].Title);
+						}
+                        
+				} 
+				else 
+				{
+					Console.WriteLine("##### Ohh, no events registered");
+				}
+				await System.Threading.Tasks.Task.Delay(3000);
 				}
 			}).ConfigureAwait(false);
 		}

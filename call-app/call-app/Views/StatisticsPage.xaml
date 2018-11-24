@@ -7,12 +7,12 @@
             <StackLayout VerticalOptions="EndAndExpand" Margin="0,0,0,24" HorizontalOptions="FillAndExpand">
              <Label Text="Haben zugesagt" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Center"/>
              <BoxView HorizontalOptions="Center" WidthRequest="150" HeightRequest="2" Color="#2196F3" VerticalOptions="CenterAndExpand"/>
-             <Label Text="7/10" FontSize="Medium" VerticalOptions="Start" HorizontalOptions="Center"/>
+             <Label Text="{Binding UsersAcceptedCall}" FontSize="Medium" VerticalOptions="Start" HorizontalOptions="Center"/>
             </StackLayout>
             <StackLayout VerticalOptions="StartAndExpand" Margin="0,24,0,0" HorizontalOptions="FillAndExpand">
              <Label Text="Verspäten sich" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Center"/>
              <BoxView HorizontalOptions="Center" WidthRequest="150" HeightRequest="2" Color="#2196F3" VerticalOptions="CenterAndExpand"/>
-             <Label Text="3/10" FontSize="Medium" VerticalOptions="Start" HorizontalOptions="Center"/>
+             <Label Text="{Binding UsersDelayedCall}" FontSize="Medium" VerticalOptions="Start" HorizontalOptions="Center"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

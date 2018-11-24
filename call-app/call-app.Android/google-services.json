@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "433855646425",
+    "firebase_url": "https://callapp-c5efe.firebaseio.com",
+    "project_id": "callapp-c5efe",
+    "storage_bucket": "callapp-c5efe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433855646425:android:71870e1374ae2705",
+        "android_client_info": {
+          "package_name": "com.companyname.call_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "433855646425-j0ek31pqg3svhprc020tlk23nda24tq0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdFVoy5lvkvlIMl_12rELbx7xYHeofWM0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

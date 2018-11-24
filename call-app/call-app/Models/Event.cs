@@ -10,14 +10,15 @@ namespace call_app.Models
         public string EventId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+		public ActionCode ActionCode { get; set; }
 
-        public Event() { }
+		public Event() { }
 
         public override string ToString()
         {
             return string.Format(
-                "Event(userid={0}, eventid={1}, title={2}, description={3})", 
-                UserId, EventId, Title, Description);
+				"Event(userid={0}, eventid={1}, title={2}, description={3}, actioncode={4})", 
+				UserId, EventId, Title, Description, ActionCode);
         }
     }
 }

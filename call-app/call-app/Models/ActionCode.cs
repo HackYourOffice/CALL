@@ -8,6 +8,7 @@ namespace call_app.Models
     {
         NOTIFICATION = 1,
         SMS = 2,
-        CALL = 3
+        CALL = 3,
+		ACCEPT = 4,
     }
 }

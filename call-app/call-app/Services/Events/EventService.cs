@@ -15,7 +15,7 @@ namespace call_app.Services
             var request = new RestRequest
             {
                 Resource = "create-event",
-                Method = Method.POST,
+                Method = Method.POST
             };
             request.AddJsonBody(createEvent);
             return Rest.Send<EventResponse>(request).Event;
@@ -26,7 +26,7 @@ namespace call_app.Services
             var request = new RestRequest
             {
                 Resource = "list-events",
-                Method = Method.POST,
+                Method = Method.POST
             };
             return Rest.Send<EventsResponse>(request).Events;
         }
@@ -36,7 +36,7 @@ namespace call_app.Services
             var request = new RestRequest
             {
                 Resource = "list-events",
-                Method = Method.POST,
+                Method = Method.POST
             };
             request.AddJsonBody(Share.User);
             return Rest.Send<EventsResponse>(request).Events;
@@ -47,7 +47,7 @@ namespace call_app.Services
             var request = new RestRequest
             {
                 Resource = "subscribe",
-                Method = Method.POST,
+                Method = Method.POST
             };
             request.AddJsonBody(new Subscription(Share.User.UserId, eventToRegisterAt.EventId));
             return Rest.Send(request);
@@ -58,7 +58,7 @@ namespace call_app.Services
             var request = new RestRequest
             {
                 Resource = "notify",
-                Method = Method.POST,
+                Method = Method.POST
             };
             request.AddJsonBody(new EventAction(subscribedEvent.EventId, actionCode));
             return Rest.Send(request);
@@ -69,21 +69,53 @@ namespace call_app.Services
             var request = new RestRequest
             {
                 Resource = "poll",
-                Method = Method.POST,
+                Method = Method.POST
             };
             request.AddJsonBody(Share.User);
             return Rest.Send<EventsResponse>(request).Events;
         }
 
+		public EventSubscriber NumberOfSubscribers(Event theEvent) 
+		{
+			var request = new RestRequest
+            {
+                Resource = "count",
+                Method = Method.POST
+            };
+			request.AddJsonBody(new EventIdentifier(theEvent.EventId));
+			return Rest.Send<EventSubscriber>(request);
+		}
+
+		public bool Accept(Event theEvent)
+        {
+            var request = new RestRequest
+            {
+                Resource = "accept-event",
+                Method = Method.POST
+            };
+			request.AddJsonBody(new EventIdentifier(theEvent.EventId));
+			return Rest.Send(request);
+        }
+
         public Event GetById(string eventId)
         {
-            return new Event
+			var request = new RestRequest
             {
-                UserId = "userid-xxx",
-                EventId = "eventid-xxx",
-                Title = "Let's Party",
-                Description = "Party Hard"
+                Resource = "get-event-by-event-id",
+                Method = Method.POST
             };
+			request.AddJsonBody(new EventIdentifier(eventId));
+			return Rest.Send<Event>(request);
         }
+
+
+		class EventIdentifier 
+		{
+			public string EventId { get; set; }
+			public EventIdentifier(string id)
+			{
+				EventId = id;
+			}
+		} 
     }
 }

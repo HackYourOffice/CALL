@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Plugin.FirebasePushNotification;
 
 namespace call_app.Droid
 {
@@ -26,6 +27,8 @@ namespace call_app.Droid
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+
+			FirebasePushNotificationManager.ProcessIntent(this, Intent);
         }
     }
 }

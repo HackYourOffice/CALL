@@ -24,9 +24,10 @@ namespace call_app.Views
 		async void Handle_Clicked(object sender, System.EventArgs e)
 		{
 			if (eventService.NotifySubscriberOf(CallEvent)) {
+				Share.calledEvent = CallEvent;
 				Device.BeginInvokeOnMainThread(async () =>
 				{
-					await Navigation.PushAsync(new StatisticsPage());
+					await Navigation.PushAsync(new StatisticsPage(CallEvent));
 				});
 			}
 		}
