@@ -6,12 +6,12 @@
 
 <ContentPage.Content>
     <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+            <Label Text="{Binding currentEvent.Title}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <Button Text="OK" WidthRequest="100" HeightRequest="100" BackgroundColor="DarkGreen"/>
-            <Button Text="in 5 Min" WidthRequest="100" HeightRequest="100" Clicked="On5MinClicked"/>
-            <Button Text="in 10 Min" WidthRequest="100" HeightRequest="100" Clicked="On10MinClicked"/>
+            <Button Text="OK"   HorizontalOptions="FillAndExpand" VerticalOptions="End" TextColor="White" BackgroundColor="#2196F3"/>
+            <Button Text="in 5 Min"  HorizontalOptions="FillAndExpand" VerticalOptions="End" TextColor="#2196F3" BackgroundColor="White" Clicked="On5MinClicked"/>
+            <Button Text="in 10 Min"  HorizontalOptions="FillAndExpand" VerticalOptions="End" TextColor="#2196F3" BackgroundColor="White" Clicked="On10MinClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
